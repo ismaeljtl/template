@@ -64,13 +64,19 @@ const CardGrid: React.FC<{ data: IData[] | undefined }> = ({ data }) => {
           currentItems.map((item) => <Card key={item.id} item={item} />)}
       </div>
       <ReactPaginate
-        className="flex gap-2 mt-8 justify-center"
+        className="flex mt-8 justify-center"
+        pageClassName="isolate inline-flex -space-x-px rounded-md shadow-sm"
+        pageLinkClassName="relative inline-flex items-center border border-base-300 bg-base-100 px-2 md:px-4 py-2 text-sm font-medium text-gray-500 hover:bg-base-200 focus:z-20"
+        activeLinkClassName="relative z-10 inline-flex items-center border border-indigo-500 bg-base-300 px-2 md:px-4 py-2 text-sm font-medium text-grey-600 focus:z-20"
+        activeClassName="px-0"
+        breakClassName="relative inline-flex items-center border border-base-300 bg-base-100 px-2 md:px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20"
+        previousLabel="«"
         breakLabel="..."
-        nextLabel="Next →"
+        nextLabel="»"
         onPageChange={handlePageClick}
-        pageRangeDisplayed={5}
-        pageCount={pageCount!}
-        previousLabel="← Previous"
+        pageCount={Math.ceil(pageCount!)}
+        previousClassName="relative inline-flex items-center rounded-l-md border border-base-300 bg-base-100 px-2 md:px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20"
+        nextClassName="relative inline-flex items-center rounded-r-md border border-base-300 bg-base-100 px-2 md:px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20"
         forcePage={Math.ceil((itemOffset + itemsPerPage) / itemsPerPage) - 1}
       />
     </>
